@@ -9,7 +9,13 @@ interface FlickrApi {
 
 
 
-    @GET(" https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=19a00727a5dbd578ecd3e4506e741fad&accuracy=&lat=0.0&lon=0.0&extras=url_s&format=json&nojsoncallback=1")
+    @GET("?method=flickr.photos.search" +
+            "&api_key=4f721bbafa75bf6d2cb5af54f937bb70" +
+            "&accuracy=1" +
+            "&extras=url_s%2Cgeo%2Cdate_taken%2Cowner_name%2Curl_o" +
+            "&format=json" +
+            "&radius_units=km"+
+            "&nojsoncallback=1")
     suspend fun getPhotos(
         @Query("lat")lat:String,
         @Query("lon")lon:String

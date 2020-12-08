@@ -1,6 +1,8 @@
 package com.bignerdranch.android.theflickrcapstone
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,9 +26,12 @@ class PhotoInfoFragment :Fragment(R.layout.fragment_photo_info) {
 
     private val callback = OnMapReadyCallback { googleMap ->
 
-        val sydney = LatLng(arg.photo.latitude.toDouble(), arg.photo.longitude.toDouble())
+        val sydney = LatLng(5.6, arg.photo.longitude.toDouble())
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12f))
+        googleMap.uiSettings.isZoomGesturesEnabled=true
+//        googleMap.uiSettings.setAllGesturesEnabled(false)
+        //Log.d(TAG, arg.photo.longitude)
 
     }
 
@@ -34,7 +39,7 @@ class PhotoInfoFragment :Fragment(R.layout.fragment_photo_info) {
         super.onCreate(savedInstanceState)
         photoImageView = requireView().findViewById(R.id.photo_details_photo)
         photoTitleTextView = requireView().findViewById(R.id.photo_details_title)
-        photoDescriptionTextView = requireView().findViewById(R.id.photo_details_description)
+//        photoDescriptionTextView = requireView().findViewById(R.id.photo_details_description)
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
@@ -44,6 +49,10 @@ class PhotoInfoFragment :Fragment(R.layout.fragment_photo_info) {
             .into(photoImageView)
 
         photoTitleTextView.text = arg.photo.title
+
+
+
+
 
 
     }
