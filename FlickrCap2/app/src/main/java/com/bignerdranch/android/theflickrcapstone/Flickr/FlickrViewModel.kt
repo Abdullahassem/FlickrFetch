@@ -16,6 +16,5 @@ class FlickrViewModel: ViewModel(){
     fun getPhotos(lan: String, lon: String) = viewModelScope.launch {
         if((flickrRepository.getPhoto(lan, lon)).isSuccessful)
             photosLiveData.postValue((flickrRepository.getPhoto(lan, lon)).body()?.photos?.photo)
-//        Log.d(TAG, "getPhotos: ${flickrRepository.getPhoto(lan, lon)}")
     }
 }
